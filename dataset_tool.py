@@ -97,7 +97,7 @@ class TFRecordExporter:
                         "shape": tf.train.Feature(
                             int64_list=tf.train.Int64List(value=self.shape)
                         ),
-                        "img":tf.train.Feature(bytes_list=tf.train.BytesList(value=[encoded_jpg]))
+                        "img":tf.train.Feature(bytes_list=tf.train.BytesList(value=[img]))
                     }
                 )
             )
