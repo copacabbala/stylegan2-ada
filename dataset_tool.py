@@ -680,7 +680,7 @@ def create_from_images(tfrecord_dir, image_dir, shuffle):
                 print ("added images", idx)
             with tf.gfile.FastGFile(image_filenames[order[idx]], 'rb') as fid:
                 try:
-                    tfr.add_image_raw(fid.read())
+                    tfr.add_image(fid.read())
                 except:
                     print ('error when adding', image_filenames[order[idx]])
                     continue
