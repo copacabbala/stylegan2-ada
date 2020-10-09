@@ -207,8 +207,8 @@ class TFRecordDataset:
         features = tf.parse_single_example(record, features={
             'shape': tf.FixedLenFeature([3], tf.int64),
             'data': tf.FixedLenFeature([], tf.string)})
-        data = tf.decode_raw(features['data'], tf.uint8)
-        return tf.reshape(data, features['shape'])
+        image = tf.image.decode_image(features['img']) 
+        return tf.transpose(image, [2,0,1]) 
 
     # Parse individual image from a tfrecords file into NumPy array.
     @staticmethod
