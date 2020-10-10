@@ -27,7 +27,7 @@ from tqdm import tqdm
 
 from training import dataset
 
-
+from PIL import Image
 import io
 
 
@@ -102,9 +102,9 @@ class TFRecordExporter:
                 img = img.astype(np.float32)
                 img = (img[:, 0::2, 0::2] + img[:, 0::2, 1::2] + img[:, 1::2, 0::2] + img[:, 1::2, 1::2]) * 0.25
             quant = np.rint(img).clip(0, 255).astype(np.uint8)
-            ex = tf.train.Example(features=tf.train.Features(feature={
-                'shape': tf.train.Feature(int64_list=tf.train.Int64List(value=quant.shape)),
-                'data': tf.train.Feature(bytes_list=tf.train.BytesList(value=[quant.tostring()]))}))
+            #ex = tf.train.Example(features=tf.train.Features(feature={
+            #    'shape': tf.train.Feature(int64_list=tf.train.Int64List(value=quant.shape)),
+            #    'data': tf.train.Feature(bytes_list=tf.train.BytesList(value=[quant.tostring()]))}))
             ex = tf.train.Example(features=tf.train.Features(feature={
                 'shape': tf.train.Feature(int64_list=tf.train.Int64List(value=quant.shape)),
                 'data': tf.train.Feature(bytes_list=tf.train.BytesList(value=[img2png(quant)]))}))
