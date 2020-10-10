@@ -35,7 +35,7 @@ def img2png(image):
     # Assumes image was passed in CHW format
     img = Image.fromarray(np.moveaxis(image, 0, 2))
     with io.BytesIO() as img_bytes:
-        img.save(img_bytes, 'PNG')
+        img.save(img_bytes, 'JPEG')
         return img_bytes.getvalue()
     
 #----------------------------------------------------------------------------
